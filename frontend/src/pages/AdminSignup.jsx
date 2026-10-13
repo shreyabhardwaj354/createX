@@ -41,7 +41,6 @@ export default function InstructorSignup() {
 
     try {
       const response = await axios.post("http://localhost:3000/admin/signup", form);
-      console.log(response);
       navigate("/admin/login", {
         state: { message: "Account created! Please log in." },
       });

@@ -95,7 +95,7 @@ router.use(adminAuth);
 
 router.post("/createCourse",async (req,res)=>{
     try{
-        const {title, description, price, imageURL, level} = req.body;
+        const {title, description, price, imageUrl, level} = req.body;
         const CourseSchema = z.object({
             title : z.string().min(8),
             description : z.string().max(150, "Maximum description length is 150"),
@@ -122,7 +122,7 @@ router.post("/createCourse",async (req,res)=>{
             title,
             description,
             price,
-            imageURL,
+            imageUrl,
             creatorId : req.user._id,
             level
         })
@@ -166,7 +166,7 @@ router.get("/dashboard",async (req,res)=>{
                 })
     }
     catch(err){
-        console.log(err)
+       console.log(err)
        return  res.status(500)
                 .json({
                     error : err.message
@@ -181,7 +181,7 @@ router.post("/addCouseContent", (req,res)=>{
 router.post("/logout",(req,res)=>{
     try{
         const token = req.cookies.token;
-        res.cookie("authToken", "");
+        res.clearCookie("adminToken");
         return res.status(200)
                 .json({
                     message : "Logged out Sucessfully"

@@ -15,7 +15,6 @@ export default function AdminDashboard() {
       try {
         const res = await axios.get(
           "http://localhost:3000/admin/dashboard",
-          {},
           { withCredentials: true }
         );
 
@@ -220,9 +219,9 @@ export default function AdminDashboard() {
               >
                 {/* Course image */}
                 <div className="relative h-48 overflow-hidden bg-[#e7ece2]">
-                  {course.imageUrl || course.imageURL ? (
+                  {course.imageUrl ? (
                     <img
-                      src={course.imageUrl || course.imageURL}
+                      src={course.imageUrl}
                       alt={course.title}
                       className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                     />
@@ -230,7 +229,9 @@ export default function AdminDashboard() {
                     <div className="flex h-full items-center justify-center text-5xl text-[#52776a]">
                       📖
                     </div>
+                    
                   )}
+                  {console.log(course)}
 
                   {course.level && (
                     <span className="absolute left-3 top-3 rounded-full bg-[#fbfaf5]/95 px-3 py-1 text-xs font-bold capitalize text-[#214f46]">

@@ -22,7 +22,7 @@ const adminSchema = new mongoose.Schema({
     "courses" : [
         {
             type : mongoose.Schema.Types.ObjectId,
-            ref: "courseModel"
+            ref: "course"
         }
     ]
 })
@@ -34,7 +34,7 @@ const courseSchema = new mongoose.Schema({
     "imageUrl" : String,
     "creatorId" : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'adminModel'
+        ref : 'admin'
     },
     "level" : String
 })
@@ -42,11 +42,11 @@ const courseSchema = new mongoose.Schema({
 const purchaseSchema = new mongoose.Schema({
     "user" : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "userModel"
+        ref : "user"
     },
     "admin" : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "adminModel"
+        ref : "admin"
     }
 })
 
