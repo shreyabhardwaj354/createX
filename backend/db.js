@@ -18,7 +18,13 @@ const adminSchema = new mongoose.Schema({
     },
     "password" :String,
     "firstName" : String,
-    "lastName" :String
+    "lastName" :String,
+    "courses" : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref: "courseModel"
+        }
+    ]
 })
 
 const courseSchema = new mongoose.Schema({

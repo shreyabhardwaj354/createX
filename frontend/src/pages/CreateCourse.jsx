@@ -45,12 +45,10 @@ export default function CreateCourse() {
     try {
       const response = await axios.post("http://localhost:3000/admin/createCourse", {
         ...form,
-        price: Number(form.price),
-      });
+        price: Number(form.price)
+      },{withCredentials: true});
 
-      console.log(response);
-
-      navigate("/instructor/dashboard", {
+      navigate("/admin/dashboard", {
         state: { message: "Your course was created successfully." },
       });
     } catch (err) {
@@ -81,7 +79,7 @@ export default function CreateCourse() {
             course<span className="text-[#d58b4b]">X</span>
           </Link>
           <Link
-            to="/instructor/dashboard"
+            to="/admin/dashboard"
             className="text-sm font-semibold text-[#214f46] hover:underline"
           >
             ← Back to dashboard

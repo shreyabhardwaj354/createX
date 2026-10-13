@@ -20,6 +20,7 @@ async function auth (req,res,next) {
                     })
         }
         req.user = user;
+        // res.cookies("adminToken", token);
         return next();
     }
     catch(err){

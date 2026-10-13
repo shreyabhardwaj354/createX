@@ -127,6 +127,10 @@ router.post("/createCourse",async (req,res)=>{
             level
         })
 
+        const user = await adminModel.findById(req.user._id);
+        user.courses.push(newCourse._id);
+        await user.save();
+
         return res.status(200)
                     .json({
                         message : "Sucessfuly Course created"
@@ -152,8 +156,42 @@ router.post("/deleteCourse", (req,res)=>{
     res.send("1");
 })
 
+router.get("/dashboard",async (req,res)=>{
+    try{
+        const user = await adminModel.findOne({_id :req.user._id}).populate('courses');
+        return res.status(200)
+                .json({
+                    message : "Sucess",
+                    courses : user.courses
+                })
+    }
+    catch(err){
+        console.log(err)
+       return  res.status(500)
+                .json({
+                    error : err.message
+                })
+    }
+})
+
 router.post("/addCouseContent", (req,res)=>{
     res.send("1");
+})
+
+router.post("/logout",(req,res)=>{
+    try{
+        const token = req.cookies.token;
+        res.cookie("authToken", "");
+        return res.status(200)
+                .json({
+                    message : "Logged out Sucessfully"
+                })
+    }catch(err){
+        return res.status(500)
+                    .json({
+                        error: err.message
+                    })
+    }
 })
 
 module.exports = router;

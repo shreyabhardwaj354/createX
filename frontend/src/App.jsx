@@ -6,6 +6,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminSignup from "./pages/AdminSignup";
 import CreateCourse from "./pages/CreateCourse";
 import ProtectedAdminRoute from "./components/ProctedAdminRoute"
+import AdminDashboard from "./pages/AdminDashboard";
 
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
 
                     <Route path="/admin/createCourse"
                            element={<CreateCourse />}
+                    />
+
+                    <Route path="/admin/dashboard"
+                            element={<AdminDashboard />}
                     />
 
                 </Route>
