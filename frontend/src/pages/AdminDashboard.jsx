@@ -231,7 +231,6 @@ export default function AdminDashboard() {
                     </div>
                     
                   )}
-                  {console.log(course)}
 
                   {course.level && (
                     <span className="absolute left-3 top-3 rounded-full bg-[#fbfaf5]/95 px-3 py-1 text-xs font-bold capitalize text-[#214f46]">
@@ -260,13 +259,23 @@ export default function AdminDashboard() {
                       </p>
                     </div>
 
+                                        
+                    <button
+                        onClick={() => navigate(`/admin/course/${course._id}`)}
+                        className="rounded-lg bg-[#214F46] px-4 py-2 text-white"
+                    >
+                        View Course
+                    </button>
+
+
                     <button
                       onClick={() =>
-                        navigate(`/admin/courses/${course._id}`)
-                      }
+                       {navigate(`/admin/course/edit/${course._id}`)
+                        console.log(course._id)
+                      }}
                       className="rounded-xl bg-[#214f46] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#173F39]"
                     >
-                      Manage course
+                      Edit course
                     </button>
                   </div>
                 </div>

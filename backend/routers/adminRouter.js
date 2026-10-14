@@ -152,9 +152,6 @@ router.get("/me", (req,res)=>{
             })
 })
 
-router.post("/deleteCourse", (req,res)=>{
-    res.send("1");
-})
 
 router.get("/dashboard",async (req,res)=>{
     try{
@@ -174,8 +171,57 @@ router.get("/dashboard",async (req,res)=>{
     }
 })
 
-router.post("/addCouseContent", (req,res)=>{
-    res.send("1");
+router.get("/course/:id", async (req,res)=>{
+    try{
+        const courseId = req.params.id;
+        const course = await courseModel.findById(courseId);
+        if(!course){
+            return res.status(404)
+                        .json({
+                            error : "Course does not exist"
+                        })
+        }
+        return res.status(200)
+                    .json({
+                        message : "Sucess",
+                        course
+                    })
+    }catch(err){
+        return res.status(500)
+                .json({
+                    error : err.message
+                })
+    }
+})
+
+
+router.post("/edit/:courseId", async (req,res)=>{
+    try{
+        const courseId = req.params.courseId;
+        const {title, description, imageUrl, price} = req.body;
+        const updatedCourse = await courseModel.findOneAndUpdate({_id: courseId}, {
+            title,
+            description,
+            imageUrl,
+            price
+        })
+        if(!updatedCourse){
+            return res.status(404)
+                        .json({
+                            error : "Course not found"
+                        })
+        }
+        return res.status(200)
+                    .json({
+                        message : "Course updated sucessfully",
+                        course : updatedCourse
+                    })
+    }catch(err){
+        return res.status(500)
+                    .json({
+                        error: err.message
+                    })
+    }
 })
 
 router.post("/logout",(req,res)=>{

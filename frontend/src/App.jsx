@@ -7,6 +7,8 @@ import AdminSignup from "./pages/AdminSignup";
 import CreateCourse from "./pages/CreateCourse";
 import ProtectedAdminRoute from "./components/ProctedAdminRoute"
 import AdminDashboard from "./pages/AdminDashboard";
+import CourseDetails from "./pages/CourseDetails";
+import EditCourse from "./pages/EditCourse";
 
 
 function App() {
@@ -32,6 +34,14 @@ function App() {
 
                     <Route path="/admin/dashboard"
                             element={<AdminDashboard />}
+                    />
+
+                    <Route path="/admin/course/:id"
+                            element={<CourseDetails />}
+                    />
+
+                    <Route path="/admin/course/edit/:courseId"
+                            element={<EditCourse />}
                     />
 
                 </Route>
